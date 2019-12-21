@@ -6,14 +6,26 @@ A read simulator producing synthetic paired-end short sequencing reads from circ
 
 
 
-## 1. Introduction
+**Table of contents**
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Quick usage](#demonstration)
+- [Method](#method)
+- [Options and arguments](#arguments)
+- [Helper scripts](#helpers)
+- [Appendix](#appendix)
+
+
+
+## 1. Introduction <a name = "introduction"></a>
 Generation of short sequencing reads from template genomes plays an important role in testing new bioinformatics methods as well as performing phylogenetic analysis. Nonetheless, most published read simulators focus on eukaryotic chromosome genomes, and as a result, the topology of template DNA sequences are considered linear by these programs. Only a few pieces of software have been developed so far for simulating short reads from prokaryotic or archaeal genomes, which often have a circular topology. One tool of this kind is the program package [GemSIM](https://sourceforge.net/projects/gemsim/)<sup>2</sup>, however, it does not run under Python 2.7 or above.  Moreover, error models for read simulation by GemSIM are often not publicly available owing to limited software support and documentation.  
 
 ReadSimulator is hence developed to address the shortage of software that takes into account the circular topology of some template genomes for read simulation. It is a Python script runs either [wgsim](https://github.com/lh3/wgsim) or [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/)<sup>1</sup> to generate synthetic paired-end short reads from circular or linear genomes. The code repository of ReadSimulator also offers two helper scripts (`poolFastaBySample.py` and `readSimulator_slurm.py`) to users.
 
 
 
-## 2. Installation
+## 2. Installation <a name = "installation"></a>
 
 ReadSimulator has the following dependencies:
 
@@ -30,7 +42,7 @@ git clone https://github.com/wanyuac/readSimulator.git
 
 
 
-## 3. Quick usage
+## 3. Quick usage <a name = "demonstration"></a>
 
 See Section [5](#arguments) for an explanation of arguments used in the following commands. ReadSimulator reads FASTA files of template genomes for read simulation.
 
@@ -56,7 +68,7 @@ Since imperfect synthetic reads contain a given level of sequencing errors, thes
 
 
 
-## 4. Method
+## 4. Method <a name = "method"></a>
 
 An ideal assembly of a circular genome should be circular. Nonetheless, since the widely used FASTA format stores circular sequences as linear strings using an arbitrary breakpoint (often the origin of replication site), read simulators specialised to linear DNA sequences do not produce any read spanning over the breakpoint, potentially reducing the circularity of a *de novo* genome assembly (Fig. 1).   
 
@@ -65,12 +77,16 @@ An ideal assembly of a circular genome should be circular. Nonetheless, since th
     <figcaption><b>Figure 1. Necessity of considering the topology of circular DNA for read simulation.</b> This demonstration is created from the nucleotide sequence of plasmid pK2044 of <i>Klebsiella pneumoniae</i> strain NTUH-K2044 (RefSeq accession: NC_006625) with readSimulator, ART v2.5.1, and SPAdes v3.6.2. Assembly graphs are visualised using <a href = "https://github.com/rrwick/Bandage">Bandage</a><sup>3</sup>. (<b>a</b>) A <i>de novo</i> assembly of the plasmid using perfect short reads synthesised when taking into accound the circular topology of the plasmid. The sequence of a region comprised of five consecutive nodes is extracted from the assembly graph for alignment. I call this sequence <i>r</i> for simplicity. (<b>b</b>) A <i>de novo</i> assembly of the same plasmid using perfect reads synthesised when considering the DNA as a linear sequence. Blue rgions show hits (at least 95% nucleotide identity) of sequence <i>r</i> in the assembly. (<b>c</b>) Genome of plasmid pK2044. Sequence <i>r</i> goes through the arbitrary breakpoint (used for creating the FASTA file) and shows repetitive short hits at a few locations. </figcaption>
 </figure>
 
+<br />
+
 Given a linear sequence from a FASTA file, an approach to read simulation for a circular genome is to randomly shuffle the arbitrary breakpoint for several times (equivalent to fixing the position of our scissor but rotating the circular genome by a random degree every time), and after each replacement of the breakpoint, we cut the circular sequence and simulate reads from the resulting linear sequence (Fig. 2a). Finally, we pool all synthetic reads into a single set as the output (Fig. 2b). I refer to this algorithm as rotation-and-cut and have implemented it in readSimulator. The algorithm was proposed by [Ryan Wick](https://github.com/rrwick/), who noticed the necessity of considering the circular topology of bacterial DNA for read simulation.  
 
 <figure>
     <img src = "./Figure/algorithm.png" alt = "The rotation-and-cut algorithm for read simulation"/>
     <figcaption><b>Figure 2. the rotation-and-cut algorithm for read simulation.</b> Thin arrows above sequences in panel <b>b</b> indicate the orentation of fragments cut from linear sequences.</figcaption>
 </figure>
+
+<br />
 
 Given *N* iterations of sequence "rotation" and a target total read depth *D*, readSimulator calculates the target read depth (also known as the fold coverage) with the Lander-Waterman equation<sup>4</sup>. Accordingly, for a circular genome of length *L*, the desired number (*n*) of synthetic paired-end reads (read length *r*) per round is calculated by:
 $$
@@ -122,7 +138,7 @@ Note that wgsim only supports a uniform error rate of all synthetic reads, where
 
 
 
-## 6. Helper scripts
+## 6. Helper scripts <a name = "helpers"></a>
 
 The readSimulator repository offers two helper scripts in addition to `readSimulator.py`.
 
@@ -190,6 +206,7 @@ optional arguments:
 
 
 <hr />
+## 7. Appendix <a name = "appendix"></a>
 
 **Licence**
 
