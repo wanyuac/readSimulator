@@ -208,14 +208,17 @@ optional arguments:
 
 
 
-<hr />
 ## 7. Appendix <a name = "appendix"></a>
 
 **Licence**
 
 ReadSimulator is licensed under the GNU General Public License v3.0.
 
+**Editorial history**
 
+Publication: 21 December 2019
+
+<hr />
 
 **References**
 
@@ -223,9 +226,3 @@ ReadSimulator is licensed under the GNU General Public License v3.0.
 2. McElroy, K. E., Luciani, F., & Thomas, T. (2012). GemSIM: general, error-model based simulator of next-generation sequencing data. *BMC Genomics, 13*(1), 74. https://doi.org/10.1186/1471-2164-13-74.
 3. Wick, R. R., Schultz, M. B., Zobel, J., & Holt, K. E. (2015). Bandage: interactive visualization of de novo genome assemblies. *Bioinformatics*. https://doi.org/10.1093/bioinformatics/btv383.
 4. Lander, E. S., & Waterman, M. S. (1988). Genomic mapping by fingerprinting random clones: A mathematical analysis. *Genomics, 2*(3), 231–239. https://doi.org/http://dx.doi.org/10.1016/0888-7543(88)90007-9.
-
-
-
-**Editorial history**
-
-Publication: 21 December 2019
