@@ -89,9 +89,12 @@ Given a linear sequence from a FASTA file, an approach to read simulation for a 
 <br></br>
 
 Given *N* iterations of sequence "rotation" and a target total read depth *D*, readSimulator calculates the target read depth (also known as the fold coverage) with the Lander-Waterman equation<sup>4</sup>. Accordingly, for a circular genome of length *L*, the desired number (*n*) of synthetic paired-end reads (read length *r*) per round is calculated by:
-$$
-n = \frac{LD}{2rN}
-$$
+
+![Lander-Waterman equation](./Figure/equation.png)
+
+<!--$$
+#n = \frac{LD}{2rN}
+$$-->
 Accordingly, the number of rotations (*N*) must not be too large to get an even distribution of synthetic reads on the template genome. An integer between 2 and 10 would be sufficient for most of cases of circular-mode simulation (default: 1, no rotation or linear mode simulation). In summary,  
 
 - *N = 1*: linear mode, which treats the template genome as a linear sequence;
