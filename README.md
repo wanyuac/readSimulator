@@ -77,7 +77,7 @@ An ideal assembly of a circular genome should be circular. Nonetheless, since th
     <figcaption><b>Figure 1. Necessity of considering the topology of circular DNA for read simulation.</b> This demonstration is created from the nucleotide sequence of plasmid pK2044 of <i>Klebsiella pneumoniae</i> strain NTUH-K2044 (RefSeq accession: NC_006625) with readSimulator, ART v2.5.1, and SPAdes v3.6.2. Assembly graphs are visualised using <a href = "https://github.com/rrwick/Bandage">Bandage</a><sup>3</sup>. (<b>a</b>) A <i>de novo</i> assembly of the plasmid using perfect short reads synthesised when taking into accound the circular topology of the plasmid. The sequence of a region comprised of five consecutive nodes is extracted from the assembly graph for alignment. I call this sequence <i>r</i> for simplicity. (<b>b</b>) A <i>de novo</i> assembly of the same plasmid using perfect reads synthesised when considering the DNA as a linear sequence. Blue rgions show hits (at least 95% nucleotide identity) of sequence <i>r</i> in the assembly. (<b>c</b>) Genome of plasmid pK2044. Sequence <i>r</i> goes through the arbitrary breakpoint (used for creating the FASTA file) and shows repetitive short hits at a few locations. </figcaption>
 </figure>
 
-<br />
+<br></br>
 
 Given a linear sequence from a FASTA file, an approach to read simulation for a circular genome is to randomly shuffle the arbitrary breakpoint for several times (equivalent to fixing the position of our scissor but rotating the circular genome by a random degree every time), and after each replacement of the breakpoint, we cut the circular sequence and simulate reads from the resulting linear sequence (Fig. 2a). Finally, we pool all synthetic reads into a single set as the output (Fig. 2b). I refer to this algorithm as rotation-and-cut and have implemented it in readSimulator. The algorithm was proposed by [Ryan Wick](https://github.com/rrwick/), who noticed the necessity of considering the circular topology of bacterial DNA for read simulation.  
 
@@ -86,7 +86,7 @@ Given a linear sequence from a FASTA file, an approach to read simulation for a 
     <figcaption><b>Figure 2. the rotation-and-cut algorithm for read simulation.</b> Thin arrows above sequences in panel <b>b</b> indicate the orentation of fragments cut from linear sequences.</figcaption>
 </figure>
 
-<br />
+<br></br>
 
 Given *N* iterations of sequence "rotation" and a target total read depth *D*, readSimulator calculates the target read depth (also known as the fold coverage) with the Lander-Waterman equation<sup>4</sup>. Accordingly, for a circular genome of length *L*, the desired number (*n*) of synthetic paired-end reads (read length *r*) per round is calculated by:
 $$
