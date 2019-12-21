@@ -218,8 +218,6 @@ ReadSimulator is licensed under the GNU General Public License v3.0.
 
 Publication: 21 December 2019
 
-<hr />
-
 **References**
 
 1. Huang, W., Li, L., Myers, J. R., & Marth, G. T. (2012). ART: A next-generation sequencing read simulator. *Bioinformatics, 28*(4), 593–594. https://doi.org/10.1093/bioinformatics/btr708.
