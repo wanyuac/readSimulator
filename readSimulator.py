@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 This script simulates paired-end short reads from reference sequences. It is inspired by Ryan's script
 make_synthetic_reads.py. At present, it supports simulators wgsim and ART. A user can simulate reads based
@@ -28,18 +30,19 @@ Example commands:
     --outdir shredded_reads --iterations 10 --readlen 100 \
     -opts '-m 300 -s 25 -qU 35 -nf 0 -rs 10 -ss HS20 -qs -1.5 -qs2 -2 -na' --check_cmd > readsim.log
 
-For VLSCI users, because wgsim is a component of SamTools, one can simply call wgsim after loading the module
-SAMtools/1.3.1-vlsci_intel-2015.08.25-HTSlib-1.3.1 on Helix and samtools-intel/1.2 on Barcoo.
+For some cluster users, wgsim may be compiled as a component of SamTools. In this case, one can simply call
+wgsim after loading the environment module SAMtools.
 
 Limitations:
 1. This script does not support variable relative depths for each contig because the number of contigs varies
 across input files.
 2. It does not support simulation of PacBio reads yet.
 
-Python version: 3.5.2
-Author: Yu Wan (wanyuac@gmail.com)
+Python version: 3.5.2+
+Author: Yu Wan (wanyuac@sina.cn)
 Licence: GNU GPL 2.1
-Development history: 23-24/9/2016
+Publication: 23-24/9/2016
+Last modification: 21 Dec 2019
 """
 
 from argparse import ArgumentParser
@@ -59,7 +62,7 @@ def parse_arguments():
     parser.add_argument('--outdir', type = str, default = '.', required = False,\
                         help = "Directory for output files")
     parser.add_argument('--iterations', type = int, default = 1, required = False,\
-                        help = "Number of arteficial ori locus for read simulation.")
+                        help = "Number of arbitrary sequence breakpoints for read simulation. (default: 1, treating the template genome as a linear sequence)")
     parser.add_argument('--readlen', type = int, default = '100', required = False,\
                         help = "Read length")
     parser.add_argument('--depth', type = float, default = '70', required = False,\

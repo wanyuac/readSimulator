@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 This script pools FASTA files of the same sample together to make a large multi-FASTA file.
 It can be used for preparing input files of readSimulator_slurm.py (multi-sample) and readSimulator.py (single sample).
@@ -25,10 +27,10 @@ Example:
 python poolFastaBySample.py --input strain_accessions.txt --filename_delim "__" --col_delim "\t" --col2_delim "," \
 indir genbank/fasta --input_ext fasta --outdir genbank/fasta_pooled --output_ext fna
 
-Python version: 3.5.2
-Author: Yu Wan (wanyuac@gmail.com)
+Python version: 3.5.2+
+Author: Yu Wan (wanyuac@sina.cn)
 Licence: GNU GPL 2.1
-Development history: 14 April 2017
+Publication: 14 April 2017
 """
 
 from argparse import ArgumentParser

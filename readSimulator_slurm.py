@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 This script submits SLURM jobs of readSimulator.py for multiple reference sequences so as to save time.
 At present, it only supports the VLSCI cluster Helix, but it is easy to adapt this script for other SLURM-based systems.
@@ -16,10 +18,11 @@ Example:
     --opts "--simulator wgsim --simulator_path wgsim --outdir shredded_reads --iterations 10 \
     --readlen 100 --depth 70 --opts '-e 0 -r 0 -R 0 -X 0 -S 5 -h'"
 
-Python version: 3.5.2
-Author: Yu Wan (wanyuac@gmail.com)
+Python version: 3.5.2+
+Author: Yu Wan (wanyuac@sina.cn)
 Licence: GNU GPL 2.1
-First edition: 24 Sep 2016; the latest edition: 20 May 2018
+Publication: 24 Sep 2016
+Last modification: 20 May 2018
 """
 
 from argparse import ArgumentParser
