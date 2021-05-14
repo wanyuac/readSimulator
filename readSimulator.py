@@ -39,10 +39,10 @@ across input files.
 2. It does not support simulation of PacBio reads yet.
 
 Python version: 3.5.2+
-Author: Yu Wan (wanyuac@sina.cn)
+Author: Yu Wan (wanyuac@126.com)
 Licence: GNU GPL 2.1
 Publication: 23-24/9/2016
-Last modification: 21 Dec 2019
+Last modification: 14/5/2021
 """
 
 from argparse import ArgumentParser
@@ -123,7 +123,7 @@ def main():
             for _, f in enumerate(readsets):
                 zip_file(f)
             print("Simulation for sample %s is finished successfully. Simulated reads are stored in %s and %s" %\
-                  (sample, readsets[0], readsets[1]))
+                  (sample, readsets[0] + ".gz", readsets[1] + ".gz"))
 
 def simulate_reads(sample, seq_name, seq, readlen, depth, filenames, simulator, opts, random_start, run):
     
